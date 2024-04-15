@@ -85,7 +85,10 @@ static inline int _is_stop(const uint8_t* digits, const int slen, const int i, c
 
     // TAG
     if ((x0 == T) && (x1 == A) && (x2 == G))
-        return !((tt == 6) || (tt == 15) || (tt == 16) || (tt == 22));
+        return !(
+                (tt == 6)  || (tt == 15) || (tt == 16) || (tt == 22)
+             || (tt == 30) || (tt == 129)
+        );
     // TGA
     if ((x0 == T) && (x1 == G) && (x2 == A))
         return !(
@@ -95,7 +98,7 @@ static inline int _is_stop(const uint8_t* digits, const int slen, const int i, c
         );
     // TAA
     if ((x0 == T) && (x1 == A) && (x2 == A))
-        return !((tt == 6) || (tt == 14));
+        return !((tt == 6) || (tt == 14) || (tt == 30));
 
     // Code 2: AGA / AGG
     if (tt == 2)
