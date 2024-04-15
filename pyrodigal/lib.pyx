@@ -2196,6 +2196,12 @@ cdef class Nodes:
         cdef ssize_t i
         cdef ssize_t nn = self.length
 
+        # Warning: This condition introduces a difference between code 11 and
+        # other codes even without changing the translation table.
+        # Original prodigal has the following comment here:
+        # /* TGA or TAG is not a stop */
+        # Maybe this is a mechanism to adjust for longer epxected orfs in
+        # alternative codes because they have fewer stops?
         if tinf.trans_table != 11:
             no_stop =  ((1-tinf.gc)*(1-tinf.gc)*tinf.gc)     / 8.0
             no_stop += ((1-tinf.gc)*(1-tinf.gc)*(1-tinf.gc)) / 8.0
