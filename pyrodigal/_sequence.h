@@ -57,7 +57,8 @@ static inline int _is_start(const uint8_t* digits, const int slen, const int i, 
     if ((x0 == A) && (x1 == T) && (x2 == G))
         return 1;
     // Codes that only use ATG
-    if ((tt == 6) || (tt == 10) || (tt == 14) || (tt == 15) || (tt == 16) || (tt == 2))
+    if ((tt == 6) || (tt == 10) || (tt == 14) || (tt == 15) || (tt == 16) ||
+        (tt == 2) || (tt == 129))
         return 0;
     // GTG
     if ((x0 == G) && (x1 == T) && (x2 == G))
