@@ -58,7 +58,7 @@ static inline int _is_start(const uint8_t* digits, const int slen, const int i, 
         return 1;
     // Codes that only use ATG
     if ((tt == 6) || (tt == 10) || (tt == 14) || (tt == 15) || (tt == 16) ||
-        (tt == 2) || (tt == 129))
+        (tt == 2) || (tt == 29) || (tt == 106) || (tt == 129))
         return 0;
     // GTG
     if ((x0 == G) && (x1 == T) && (x2 == G))
@@ -88,7 +88,7 @@ static inline int _is_stop(const uint8_t* digits, const int slen, const int i, c
     if ((x0 == T) && (x1 == A) && (x2 == G))
         return !(
                 (tt == 6)  || (tt == 15) || (tt == 16) || (tt == 22)
-             || (tt == 30) || (tt == 129)
+             || (tt == 29) || (tt == 30) || (tt == 129)
         );
     // TGA
     if ((x0 == T) && (x1 == G) && (x2 == A))
@@ -99,7 +99,10 @@ static inline int _is_stop(const uint8_t* digits, const int slen, const int i, c
         );
     // TAA
     if ((x0 == T) && (x1 == A) && (x2 == A))
-        return !((tt == 6) || (tt == 14) || (tt == 30));
+        return !(
+                (tt == 6) || (tt == 14) || (tt == 29) || (tt == 30)
+             || (tt == 106)
+        );
 
     // Code 2: AGA / AGG
     if (tt == 2)

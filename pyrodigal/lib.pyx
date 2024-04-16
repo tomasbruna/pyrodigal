@@ -181,7 +181,7 @@ cdef int    _IDEAL_SINGLE_GENOME = 100000
 cdef int    _MIN_SINGLE_GENOME   = 20000
 cdef int    _WINDOW              = 120
 cdef set    _TRANSLATION_TABLES  = set(range(1, 7)) | set(range(9, 17)) | \
-                                   set(range(21, 26)) | set([29, 30, 129, 130])
+                                   set(range(21, 26)) | set([29, 30, 106, 129])
 cdef str    _PRODIGAL_VERSION    = "v2.6.3+c1e2d36"
 
 IDEAL_SINGLE_GENOME = _IDEAL_SINGLE_GENOME
@@ -788,9 +788,11 @@ cdef class Sequence:
         if x0 == nucleotide.T and x1 == nucleotide.A and x2 == nucleotide.C:
             return b"Y"
         if x0 == nucleotide.T and x1 == nucleotide.A and x2 == nucleotide.A:
-            if tt == 6:
+            if tt == 6 or tt == 106:
                 return b"Q"
             elif tt == 14:
+                return b"Y"
+            elif tt == 29:
                 return b"Y"
             elif tt == 30:
                 return b"E"
@@ -801,6 +803,8 @@ cdef class Sequence:
                 return b"L"
             elif tt == 30:
                 return b"E"
+            elif tt == 29:
+                return b"Y"
             elif tt == 129:
                 return b"Y"
         if x0 == nucleotide.T and x1 == nucleotide.G and (x2 == nucleotide.T or x2 == nucleotide.C):
